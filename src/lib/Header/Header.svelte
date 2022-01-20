@@ -1,5 +1,5 @@
 <header>
-	<a href="/">GitHub</a>
+	<a href="/">Re:</a>
 	<a href="/">JobHunt</a>
 </header>
 
