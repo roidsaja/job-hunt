@@ -33,9 +33,11 @@
 				<div class="sidebar__container-filter">
 					<div>
 						<label>Category</label>
+						<select />
 					</div>
 					<div>
 						<label>Level</label>
+						<select />
 					</div>
 				</div>
 			</div>
