@@ -80,7 +80,7 @@
 			margin-top: 2rem;
 			margin-bottom: 2.625rem;
 
-			background-image: url('mesh.png');
+			background-image: url('/mesh.png');
 			background-position: center;
 			background-size: cover;
 			border-radius: 8px;
