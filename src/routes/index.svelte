@@ -47,7 +47,7 @@
 		<div class="companies">
 			<div class="companies__job">
 				<div class="companies__job-logo">
-					<img src="static/Thinking face-cuate.svg" alt="No Image" />
+					<img src="Thinking face-cuate.svg" alt="No Image" />
 				</div>
 				<div class="companies__job__info">
 					<div class="companies__job__info-top">
@@ -80,7 +80,7 @@
 			margin-top: 2rem;
 			margin-bottom: 2.625rem;
 
-			background-image: url('static/mesh.png');
+			background-image: url('/mesh.png');
 			background-position: center;
 			background-size: cover;
 			border-radius: 8px;
