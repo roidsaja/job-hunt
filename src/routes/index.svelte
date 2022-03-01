@@ -4,8 +4,14 @@
 <div class="home">
 	<!-- Search Bar -->
 	<div class="search">
-		<input />
-		<button>Search</button>
+		<div class="search__container">
+			<input
+				class="search__container-large"
+				type="text"
+				placeholder="Title, companies, expertise or benefits"
+			/>
+			<button> Search </button>
+		</div>
 	</div>
 
 	<div class="home__flex">
@@ -65,6 +71,75 @@
 
 <style lang="scss">
 	.home {
+		.search {
+			width: 83%;
+			height: 8.625rem;
+			margin: 0 auto;
+			margin-top: 2rem;
+			margin-bottom: 2.625rem;
+
+			background-image: url('static/mesh.png');
+			background-position: center;
+			background-size: cover;
+			border-radius: 8px;
+			position: relative;
+			display: flex;
+			& input {
+				width: 66%;
+				height: 3.438rem;
+				background: #ffffff;
+				box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+				border-radius: 4px;
+				display: block;
+				margin: 0 auto;
+
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+
+				border: none;
+				padding-left: 2.625rem;
+				font-family: Arial, Helvetica, sans-serif;
+				font-style: normal;
+				font-weight: normal;
+				font-size: 12px;
+				line-height: 14px;
+				color: #b9bdcf;
+				&:focus {
+					color: #000;
+					outline: none;
+					border: 1px solid #b9bdcf;
+				}
+			}
+			& button {
+				border: none;
+				width: 14%;
+				height: 2.938rem;
+				background: #1e86ff;
+				border-radius: 4px;
+				cursor: pointer;
+
+				font-family: Arial, Helvetica, sans-serif;
+				font-style: normal;
+				font-weight: 500;
+				font-size: 16px;
+				line-height: 19px;
+				color: #ffffff;
+
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 51.3%;
+				right: 0;
+				margin: auto;
+				&:hover {
+					background: #0571ec;
+				}
+			}
+		}
 		&__flex {
 			display: flex;
 			margin: 0 auto;
