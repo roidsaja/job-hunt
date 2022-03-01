@@ -1,6 +1,4 @@
-<script>
-	import Footer from '$lib/Footer/Footer.svelte';
-	import Header from '$lib/Header/Header.svelte';
+<script lang="ts">
 </script>
 
 <div class="home">
@@ -13,25 +11,27 @@
 	<div class="home__flex">
 		<!-- Side Bar Menus -->
 		<div class="sidebar">
-			<div>
-				<input type="checkbox" />
-				<span>Entry Level</span>
-			</div>
-			<div>
-				<input type="checkbox" />
-				<span>Mid Level</span>
-			</div>
-			<div>
-				<input type="checkbox" />
-				<span>Senior Level</span>
-			</div>
-			<div>
-				<input type="checkbox" />
-				<span>Management</span>
-			</div>
-			<div>
-				<input type="checkbox" />
-				<span>Internship</span>
+			<div class="sidebar__container">
+				<h1>OCCUPATION</h1>
+				<div class="sidebar__container-checkbox">
+					<input type="checkbox" />
+					<span>Full time</span>
+				</div>
+				<div class="sidebar__container-location">
+					<h1>LOCATION</h1>
+					<div>
+						<input type="text" placeholder="City, state, zip code or country" />
+						<span class="toolTipText"> Press Enter to search </span>
+					</div>
+				</div>
+				<div class="sidebar__container-filter">
+					<div>
+						<label>Category</label>
+					</div>
+					<div>
+						<label>Level</label>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -73,6 +73,184 @@
 		}
 		.sidebar {
 			width: 31%;
+			&__container {
+				& > h1 {
+					font-family: Arial, Helvetica, sans-serif;
+					font-weight: bold;
+					font-size: 14px;
+					line-height: 21px;
+					color: #b9bdcf;
+				}
+				&-checkbox {
+					display: flex;
+					align-items: center;
+					margin-left: 0.75rem;
+					margin-bottom: 2.063rem;
+					& > input {
+						border: 1px solid #b9bdcf;
+						box-sizing: border-box;
+						border-radius: 2px;
+						width: 1.125rem;
+						height: 1.125rem;
+					}
+					& > span {
+						font-family: Arial, Helvetica, sans-serif;
+						font-style: normal;
+						font-weight: 500;
+						font-size: 14px;
+						line-height: 21px;
+						color: #334680;
+					}
+				}
+				&-location {
+					font-family: Arial, Helvetica, sans-serif;
+					font-style: normal;
+					font-weight: bold;
+					font-size: 14px;
+					line-height: 21px;
+					text-transform: uppercase;
+					color: #b9bdcf;
+					& > h1 {
+						display: block;
+						margin-bottom: 0.875rem;
+						font-size: 14px;
+						font-weight: bold;
+						line-height: 21px;
+					}
+					& > div {
+						// border: 1px solid blue;
+						display: flex;
+						align-items: center;
+						position: relative;
+						& > span:first-child {
+							position: absolute;
+							font-size: x-large;
+							padding-left: 0.75rem;
+						}
+						.toolTipText {
+							visibility: hidden;
+							width: 70%;
+							background-color: #b9bdcf;
+							color: #fff;
+							text-align: center;
+							border-radius: 6px;
+							padding: 5px 0;
+
+							font-family: Arial, Helvetica, sans-serif;
+							font-style: normal;
+							font-weight: normal;
+							font-size: 12px;
+							line-height: 14px;
+							/* Position the tooltip */
+							position: absolute;
+							left: 30%;
+							bottom: 100%;
+							z-index: 1;
+						}
+						& > input {
+							width: 100%;
+							height: 48px;
+							background: #ffffff;
+							box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+							border-radius: 4px;
+
+							border: none;
+							padding-left: 2.813rem;
+							font-family: Roboto;
+							font-style: normal;
+							font-weight: normal;
+							font-size: 12px;
+							line-height: 14px;
+							color: #b9bdcf;
+
+							&:focus {
+								outline: none;
+								color: black;
+							}
+							&:hover {
+								box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+								& + .toolTipText {
+									visibility: visible;
+								}
+							}
+						}
+						margin-bottom: 1.5rem;
+					}
+				}
+				&-filter {
+					& > div:nth-child(1) {
+						& > label {
+							font-family: Arial, Helvetica, sans-serif;
+							font-style: normal;
+							font-weight: bold;
+							font-size: 14px;
+							line-height: 21px;
+							text-transform: uppercase;
+							color: #b9bdcf;
+
+							display: inline-block;
+							margin-bottom: 0.875rem;
+						}
+						& > select {
+							width: 100%;
+							height: 2rem;
+							font-family: Roboto;
+							font-style: normal;
+							font-weight: normal;
+							font-size: 14px;
+							line-height: 14px;
+							color: #3a3a3a;
+
+							border: 1px solid #334680;
+							background: #ffffff;
+							box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+							border-radius: 4px;
+							cursor: pointer;
+							padding-left: 0.5rem;
+							&:hover {
+								box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+							}
+						}
+						margin-bottom: 1.5rem;
+					}
+					& > div:nth-child(2) {
+						& > label {
+							font-family: Arial, Helvetica, sans-serif;
+							font-style: normal;
+							font-weight: bold;
+							font-size: 14px;
+							line-height: 21px;
+							text-transform: uppercase;
+							color: #b9bdcf;
+
+							display: inline-block;
+							margin-bottom: 0.875rem;
+						}
+						& > select {
+							width: 100%;
+							height: 2rem;
+							font-family: Roboto;
+							font-style: normal;
+							font-weight: normal;
+							font-size: 14px;
+							line-height: 14px;
+							color: #3a3a3a;
+
+							border: 1px solid #334680;
+							background: #ffffff;
+							box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+							border-radius: 4px;
+							cursor: pointer;
+							padding-left: 0.5rem;
+
+							&:hover {
+								box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+							}
+						}
+						margin-bottom: 1.5rem;
+					}
+				}
+			}
 		}
 
 		.companies {
