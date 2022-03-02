@@ -1,4 +1,52 @@
 <script lang="ts">
+	const category = [
+		{ text: 'All category' },
+		{ text: 'Accounting' },
+		{ text: 'Account Management/Customer Success' },
+		{ text: ' Corporate' },
+		{ text: 'Customer Service Career' },
+		{ text: 'Data Science' },
+		{ text: 'Design' },
+		{ text: 'Editor' },
+		{ text: 'Education' },
+		{ text: 'HR' },
+		{ text: 'IT' },
+		{ text: 'Law' },
+		{ text: 'Marketing' },
+		{ text: 'Mechanic' },
+		{ text: 'Mental Health' },
+		{ text: 'Nurses' },
+		{ text: 'Office Administration' },
+		{ text: 'Physical Assistant' },
+		{ text: 'Product' },
+		{ text: 'Project Management' },
+		{ text: 'Public Relations' },
+		{ text: 'Recruiting' },
+		{ text: 'Retail' },
+		{ text: 'Sales' },
+		{ text: 'Software Engineer' },
+		{ text: 'UX' },
+		{ text: 'Videography' },
+		{ text: 'Writer' }
+	];
+
+	const level = [
+		{ text: 'All level' },
+		{ text: 'Entry Level' },
+		{ text: 'Mid Level' },
+		{ text: 'Senior Level' },
+		{ text: 'Management' },
+		{ text: 'Internship' }
+	];
+
+	//Filter level and category
+	const handleOnChooseLevel = (level: any) => {
+		return level.target.value;
+	};
+
+	const handleOnChooseCategory = (category: any) => {
+		return category.target.value;
+	};
 </script>
 
 <div class="home">
@@ -33,11 +81,23 @@
 				<div class="sidebar__container-filter">
 					<div>
 						<label>Category</label>
-						<select />
+						<select on:change={handleOnChooseCategory}>
+							{#each category as ctg}
+								<option value={ctg}>
+									{ctg.text}
+								</option>
+							{/each}
+						</select>
 					</div>
 					<div>
 						<label>Level</label>
-						<select />
+						<select on:change={handleOnChooseLevel}>
+							{#each level as lvl}
+								<option value={lvl}>
+									{lvl.text}
+								</option>
+							{/each}
+						</select>
 					</div>
 				</div>
 			</div>
