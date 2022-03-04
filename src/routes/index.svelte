@@ -81,7 +81,14 @@
 				<div class="companies">
 					<div class="companies__job">
 						<div class="companies__job-logo">
-							<img src="Thinking face-cuate.svg" alt="" />
+							{#if !item.company.id}
+								<img src="Thinking face-cuate.svg" alt="" />
+							{:else}
+								<img
+									src={`https://assets.themuse.com/uploaded/companies/${item.company.id}/small_logo.png?v=10ea4eb650de2d1ade64d89d0317e18970e14ad334e29292d381b68572fd849b`}
+									alt=""
+								/>
+							{/if}
 						</div>
 						<div class="companies__job__info">
 							<div class="companies__job__info-top">
