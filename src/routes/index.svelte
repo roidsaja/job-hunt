@@ -1,52 +1,24 @@
 <script lang="ts">
-	const category = [
-		{ text: 'All category' },
-		{ text: 'Accounting' },
-		{ text: 'Account Management/Customer Success' },
-		{ text: ' Corporate' },
-		{ text: 'Customer Service Career' },
-		{ text: 'Data Science' },
-		{ text: 'Design' },
-		{ text: 'Editor' },
-		{ text: 'Education' },
-		{ text: 'HR' },
-		{ text: 'IT' },
-		{ text: 'Law' },
-		{ text: 'Marketing' },
-		{ text: 'Mechanic' },
-		{ text: 'Mental Health' },
-		{ text: 'Nurses' },
-		{ text: 'Office Administration' },
-		{ text: 'Physical Assistant' },
-		{ text: 'Product' },
-		{ text: 'Project Management' },
-		{ text: 'Public Relations' },
-		{ text: 'Recruiting' },
-		{ text: 'Retail' },
-		{ text: 'Sales' },
-		{ text: 'Software Engineer' },
-		{ text: 'UX' },
-		{ text: 'Videography' },
-		{ text: 'Writer' }
-	];
+	import category from '$lib/constants';
+	import level from '$lib/constants';
+	import { onMount } from 'svelte';
+	import moment from 'moment';
 
-	const level = [
-		{ text: 'All level' },
-		{ text: 'Entry Level' },
-		{ text: 'Mid Level' },
-		{ text: 'Senior Level' },
-		{ text: 'Management' },
-		{ text: 'Internship' }
-	];
+	let pageProp: number = 1;
+	let categoryProp: string;
+	let levelProp: string;
+	let data: any;
+	let itemsResults: any;
 
-	//Filter level and category
-	const handleOnChooseLevel = (level: any) => {
-		return level.target.value;
-	};
-
-	const handleOnChooseCategory = (category: any) => {
-		return category.target.value;
-	};
+	onMount(async () => {
+		const r = await fetch(
+			`${import.meta.env.VITE_BASE_URL}?page=${pageProp}&api_key=${
+				import.meta.env.VITE_MUSE_API_KEY
+			}`
+		);
+		data = await r.json();
+		itemsResults = data.results;
+	});
 </script>
 
 <div class="home">
@@ -81,20 +53,20 @@
 				<div class="sidebar__container-filter">
 					<div>
 						<label>Category</label>
-						<select on:change={handleOnChooseCategory}>
+						<select bind:value={categoryProp}>
 							{#each category as ctg}
 								<option value={ctg}>
-									{ctg.text}
+									{ctg.message}
 								</option>
 							{/each}
 						</select>
 					</div>
 					<div>
 						<label>Level</label>
-						<select on:change={handleOnChooseLevel}>
+						<select bind:value={levelProp}>
 							{#each level as lvl}
 								<option value={lvl}>
-									{lvl.text}
+									{lvl.message}
 								</option>
 							{/each}
 						</select>
@@ -104,30 +76,34 @@
 		</div>
 
 		<!-- Main List -->
-		<div class="companies">
-			<div class="companies__job">
-				<div class="companies__job-logo">
-					<img src="Thinking face-cuate.svg" alt="No Image" />
-				</div>
-				<div class="companies__job__info">
-					<div class="companies__job__info-top">
-						<span>GitHub</span>
-						<span>Frontend Developer</span>
-					</div>
-					<div class="companies__job__info-bottom">
-						<button>Full time</button>
-						<div>
-							<div>
-								<span>Location</span>
+		{#if data}
+			{#each itemsResults as item}
+				<div class="companies">
+					<div class="companies__job">
+						<div class="companies__job-logo">
+							<img src="Thinking face-cuate.svg" alt="" />
+						</div>
+						<div class="companies__job__info">
+							<div class="companies__job__info-top">
+								<span>{item.company.name}</span>
+								<span>{item.name}</span>
 							</div>
-							<div>
-								<span>Schedule</span>
+							<div class="companies__job__info-bottom">
+								<button>Full time</button>
+								<div>
+									<div>
+										<span>{item.locations[0] && item.locations[0].name}</span>
+									</div>
+									<div>
+										<span>{moment(item.publication_date).fromNow()}</span>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+			{/each}
+		{/if}
 	</div>
 </div>
 
