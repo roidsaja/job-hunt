@@ -76,9 +76,10 @@
 		</div>
 
 		<!-- Main List -->
-		{#if data}
-			{#each itemsResults as item}
-				<div class="companies">
+
+		<div class="companies">
+			{#if data}
+				{#each itemsResults as item}
 					<div class="companies__job">
 						<div class="companies__job-logo">
 							{#if !item.company.id}
@@ -108,9 +109,9 @@
 							</div>
 						</div>
 					</div>
-				</div>
-			{/each}
-		{/if}
+				{/each}
+			{/if}
+		</div>
 	</div>
 </div>
 
@@ -399,6 +400,11 @@
 					height: 5.625rem;
 					border-radius: 4px;
 					border: 1px solid darkslategray;
+					background-position: center;
+
+					& > img {
+						width: 100%;
+					}
 				}
 				&__info {
 					width: 80.5%;
