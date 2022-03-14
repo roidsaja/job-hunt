@@ -1,4 +1,5 @@
 <script lang="ts">
+	// https://stackoverflow.com/questions/67568323/how-can-i-send-secure-api-requests-from-sveltekit-app-without-showing-api-keys
 	import category from '$lib/constants';
 	import level from '$lib/constants';
 	import { onMount } from 'svelte';
