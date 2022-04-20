@@ -1,4 +1,25 @@
 <script lang="ts">
+	// https://stackoverflow.com/questions/67568323/how-can-i-send-secure-api-requests-from-sveltekit-app-without-showing-api-keys
+	import category from '$lib/constants';
+	import level from '$lib/constants';
+	import { onMount } from 'svelte';
+	import moment from 'moment';
+
+	let pageProp: number = 1;
+	let categoryProp: string;
+	let levelProp: string;
+	let data: any;
+	let itemsResults: any;
+
+	onMount(async () => {
+		const r = await fetch(
+			`${import.meta.env.VITE_BASE_URL}?page=${pageProp}&api_key=${
+				import.meta.env.VITE_MUSE_API_KEY
+			}`
+		);
+		data = await r.json();
+		itemsResults = data.results;
+	});
 </script>
 
 <div class="home">
@@ -33,40 +54,64 @@
 				<div class="sidebar__container-filter">
 					<div>
 						<label>Category</label>
-						<select />
+						<select bind:value={categoryProp}>
+							{#each category as ctg}
+								<option value={ctg}>
+									{ctg.message}
+								</option>
+							{/each}
+						</select>
 					</div>
 					<div>
 						<label>Level</label>
-						<select />
+						<select bind:value={levelProp}>
+							{#each level as lvl}
+								<option value={lvl}>
+									{lvl.message}
+								</option>
+							{/each}
+						</select>
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<!-- Main List -->
+
 		<div class="companies">
-			<div class="companies__job">
-				<div class="companies__job-logo">
-					<img src="Thinking face-cuate.svg" alt="No Image" />
-				</div>
-				<div class="companies__job__info">
-					<div class="companies__job__info-top">
-						<span>GitHub</span>
-						<span>Frontend Developer</span>
-					</div>
-					<div class="companies__job__info-bottom">
-						<button>Full time</button>
-						<div>
-							<div>
-								<span>Location</span>
+			{#if data}
+				{#each itemsResults as item}
+					<div class="companies__job">
+						<div class="companies__job-logo">
+							{#if !item.company.id}
+								<img src="Thinking face-cuate.svg" alt="" />
+							{:else}
+								<img
+									src={`https://assets.themuse.com/uploaded/companies/${item.company.id}/small_logo.png?v=10ea4eb650de2d1ade64d89d0317e18970e14ad334e29292d381b68572fd849b`}
+									alt=""
+								/>
+							{/if}
+						</div>
+						<div class="companies__job__info">
+							<div class="companies__job__info-top">
+								<span>{item.company.name}</span>
+								<span>{item.name}</span>
 							</div>
-							<div>
-								<span>Schedule</span>
+							<div class="companies__job__info-bottom">
+								<button>Full time</button>
+								<div>
+									<div>
+										<span>{item.locations[0] && item.locations[0].name}</span>
+									</div>
+									<div>
+										<span>{moment(item.publication_date).fromNow()}</span>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
+				{/each}
+			{/if}
 		</div>
 	</div>
 </div>
@@ -356,6 +401,11 @@
 					height: 5.625rem;
 					border-radius: 4px;
 					border: 1px solid darkslategray;
+					background-position: center;
+
+					& > img {
+						width: 100%;
+					}
 				}
 				&__info {
 					width: 80.5%;
